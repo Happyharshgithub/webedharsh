@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/public/styles.css" rel="stylesheet" />
+    <title>Blog</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
+</head>
+
+<body>
+
+    <!-- Responsive navbar-->
+    <%- include('./partials/nav.ejs') %>
+    
+    <!-- Page Content-->
+    <div class="container px-4 px-lg-5">
+        <!-- Heading Row-->
+        <div class="row gx-4 gx-lg-5 align-items-center my-5">
+            <div class="col-lg-7">
+                <img src="/public/save the planet.jpg" class="card-img-top" alt=".f..">
+
+            </div>
+            <div class="col-lg-5">
+                <h1 class="font-weight-light">Business Name or Tagline
+                    <%= blog.heading%>
+                </h1>
+                <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it,
+                    but it makes a great use of the standard Bootstrap core components. Feel free to use this template
+                    for any project you want!</p>
+                <a class="btn btn-primary" href="#!">Call to Action!</a>
+                <a href="" class="mr-4 text-danger"><i id="<%= blog._id %>" onclick="deleteBtn(event)"
+                        class="far fa-trash-alt"></i></a>
+
+            </div>
+        </div>
+
+        <script>
+            const deleteBtn = (event) =>{
+              event.preventDefault();
+              console.log(event.target.id );
+              const id = event.target.id;
+              const endpoint = `/blog/${id}`;
+              fetch( endpoint,{
+                method:'DELETE'
+              } )
+              .then(response => response.json())
+              .then(data => window.location.href = '/')
+              .catch(err => console.log(err));
+            }
+          </script>
+        <hr>
+
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
+        corporis quod, ea minima accusamus.
+
+
+        <!-- Content Row-->
+
+        <div class="row gx-4 gx-lg-5 ">
+
+            <div class="row gx-4 gx-lg-5 align-items-center my-5 ">
+                <div class="col-lg-9">
+                    <div class="card h-100 ">
+                        <span class="border border-primary m-1">
+                            <!--  <img class="img-fluid rounded mb-4 mb-lg-0 max-width: 100%" src="assets/save the planet.jpg" alt="..." />-->
+                        </span>
+                        <div class="card-body">
+                            <h2 class="card-title">Card One</h2>
+                            <h6 class="card-title">Card One</h6><br>
+                            <p class="card-text">
+                                olor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus
+                                quam m
+                                olestias corporis quod, ea minima accusamus.
+
+                            </p>
+                        </div>
+                        <div class="card-footer">
+
+                            <table>
+                                <tr>
+                                    <th> <a class="btn btn-primary btn-sm" href="#!">More Info</a></th>
+                                    <th>&nbsp;</th>
+                                    <th> <small class="text-muted">Last updated 3 mins ago</small></th>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="card h-100 ">
+                        <span class="border border-primary m-1">
+                            <!--  <img class="img-fluid rounded mb-4 mb-lg-0 max-width: 100%" src="assets/save the planet.jpg" alt="..." />-->
+                        </span>
+                        <div class="card-body">
+                            <h2 class="card-title">Card One</h2>
+                            <h6 class="card-title">Card One</h6><br>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni
+                                quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                        </div>
+                        <div class="card-footer">
+
+                            <table>
+                                <tr>
+                                    <th> <a class="btn btn-primary btn-sm" href="#!">More Info</a></th>
+                                    <th>&nbsp;</th>
+                                    <th> <small class="text-muted">Last updated 3 mins ago</small></th>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="card h-100 ">
+                        <span class="border border-primary m-1">
+                            <!--  <img class="img-fluid rounded mb-4 mb-lg-0 max-width: 100%" src="assets/save the planet.jpg" alt="..." />-->
+                        </span>
+                        <div class="card-body">
+                            <h2 class="card-title">Card One</h2>
+                            <h6 class="card-title">Card One</h6><br>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni
+                                quas ex numquam, maxime minus quam molestias corporis quod, ea minima accusamus.</p>
+                        </div>
+                        <div class="card-footer">
+
+                            <table>
+                                <tr>
+                                    <th> <a class="btn btn-primary btn-sm" href="#!">More Info</a></th>
+                                    <th>&nbsp;</th>
+                                    <th> <small class="text-muted">Last updated 3 mins ago</small></th>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 ">
+                    <!--  <div class="card h-100  ">
+                        <div class="card-body"> 
+                    <h3 class="font-weight-light">Business Name</h3>
+                    <p>This is a template that much fancy standard Boto ject you want!</p>
+                    <a class="btn btn-primary" href="#!">Call to Action!</a>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+        <div class="container px-4 px-lg-5">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
