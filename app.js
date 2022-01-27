@@ -131,12 +131,16 @@ app.get('/' , (req,res) =>{
 sess=req.session;
 sess.username;
 sess.username="Ramesh";
-console.log(req.session.username);
+//console.log(req.session.username);
+//var passedVariable = req.query.valid;
+var passedVariable = req.session.valid;
+//console.log(passedVariable)
+
 
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('index', { title: 'Home', blogs: result });
+        res.render('index', { title: 'Home', blogs: result, userstatus: passedVariable });
     })
     .catch(err => console.log(err))
     //res.render('index' , { title : 'home', blogs : blogarray });
@@ -145,12 +149,13 @@ console.log(req.session.username);
 //homepage
 app.get('/homepage' , (req,res) =>{
 
-    console.log(req.session.username);
+  //  console.log(req.session.username);
     //res.render('index' , { title : 'home', blogs: result  });
+    var passedVariable = req.session.valid;
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('index', { title: 'Home', blogs: result });
+        res.render('index', { title: 'Home', blogs: result,userstatus: passedVariable });
 
     })
     .catch(err => console.log(err))
@@ -159,13 +164,15 @@ app.get('/homepage' , (req,res) =>{
 
 //about blog
 app.get('/about1' , (req,res) =>{
-    res.render('about');
+    var passedVariable = req.session.valid;
+    res.render('about',{userstatus: passedVariable });
 })
 
 
 //blog
 app.get('/blogss' , (req,res) =>{
-    res.render('blogss');
+    var passedVariable = req.session.valid;
+    res.render('blogss',{userstatus: passedVariable });
 })
 
 
@@ -173,7 +180,7 @@ app.get('/blogss' , (req,res) =>{
 
 app.get('/blogss/:id', (req, res) => {
 
-
+    var passedVariable = req.session.valid;
     const id = req.params.id;
 
 
@@ -181,7 +188,7 @@ app.get('/blogss/:id', (req, res) => {
         .then(result => {
             console.log(result);
 
-            res.render('blogss', { title: 'Blog' ,blog:result});
+            res.render('blogss', { title: 'Blog' ,blog:result, userstatus: passedVariable});
 
         })
         .catch(err => console.log(err))
@@ -192,8 +199,7 @@ app.get('/blogss/:id', (req, res) => {
 
 //single blog delete
 app.delete('/blog/:id', (req, res) => {
-
-
+    
     const id = req.params.id;
 
     const myresponse = {
@@ -214,18 +220,20 @@ app.delete('/blog/:id', (req, res) => {
 
 //create blog
 app.get('/create/edit' , (req,res) =>{
-    res.render('create', {root: __dirname});
+    var passedVariable = req.session.valid;
+    res.render('create', {root: __dirname ,userstatus: passedVariable});
 })
 
 //register
 app.get('/register' , (req,res) =>{
-    res.render('register', {root: __dirname});
+    var passedVariable = req.session.valid;
+    res.render('register', {root: __dirname, userstatus: passedVariable});
 })
 
 
 //allblogs
 app.get('/allblogs' , (req,res) =>{
-
+    var passedVariable = req.session.valid;
     sess=req.session;
 sess.username;
 sess.username="Ramesh";
@@ -234,7 +242,7 @@ console.log(req.session.username);
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('all', { title: 'Home', blogs: result });
+        res.render('all', { title: 'Home', blogs: result, userstatus: passedVariable });
 
     })
     .catch(err => console.log(err))
@@ -248,7 +256,7 @@ app.post('/create/edit' , (req,res) =>{
 console.log(req.body);
     blog.save()
         .then(result => {
-            res.redirect('/');
+            res.redirect('/' );
         })
         .catch(err => console.log(err));
 
@@ -278,7 +286,8 @@ app.post('/create/edit1', upload.single('image'), (req, res, next) => {
 
 
 app.get('/login/register' , (req,res) =>{
-    res.render('login', {root: __dirname});
+    var passedVariable = req.session.valid;
+    res.render('login', {root: __dirname, userstatus: passedVariable});
 })
 
 //app.post('/login/register' , (req,res) =>{
@@ -305,6 +314,7 @@ app.get('/login/register' , (req,res) =>{
 
 //register post handle
 app.post('/register',(req,res)=>{
+    var passedVariable = req.session.valid;
   const {name,email,username,penname,password, password2} = req.body;
   let errors = [];
   console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
@@ -326,14 +336,15 @@ app.post('/register',(req,res)=>{
       username : username,
       email : email,
       password : password,
-      password2 : password2})
+      password2 : password2,
+      userstatus: passedVariable})
    } else {
       //validation passed
      Blogr.findOne({username : username}).exec((err,user)=>{
       console.log(user);   
       if(user) {
           errors.push({msg: 'username already exists'});
-          res.render('register',{errors,name,email,penname,username,password,password2})  
+          res.render('register',{errors,name,email,penname,username,password,password2, userstatus: passedVariable})  
          } else { 
           const newUser = new Blogr({
               name : name,
@@ -367,6 +378,7 @@ app.post('/register',(req,res)=>{
   //login post
 
   app.post('/login/register',(req,res)=>{
+    var passedVariable = req.session.valid;
     const {username,password} = req.body;
     let errors = [];
     //console.log(' Name ' + name+ ' email :' + email+ ' pass:' + password);
@@ -378,23 +390,30 @@ app.post('/register',(req,res)=>{
        Blogr.findOne({username : username}).exec((err,user)=>{
        // console.log(user);   
         if(user) {
-           console.log(user.password)
+         //  console.log(user.password)
            bcrypt.compare(password,user.password,(err,isMatch)=>{
             if(err) throw err;
 
             if(isMatch) {
               // res.redirect('/')
-              res.render('/index',{username})
+             // res.render('index',{{title:'Home',blogs:result}})
+            //  res.redirect('/'+req.user.username)
+           // var string = encodeURIComponent(user.username);
+               // res.redirect('/?valid=' + string);
+                req.session.valid = true;
+                req.session.valid=user.username;
+               res.redirect('/')   
+
             } else {
                 //return done(null,false,{message : 'pass incorrect'});
                 errors.push({msg: 'password incorrect'});
-          res.render('login',{errors,username,password})
+          res.render('login',{errors,username,password, userstatus: passedVariable})
             }
         })
 
                        
            } else {  errors.push({msg: 'incorrect credentials'});
-           res.render('login',{errors,username,password})
+           res.render('login',{errors,username,password, userstatus: passedVariable})
             
                  
        
