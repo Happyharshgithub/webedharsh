@@ -2,6 +2,7 @@
   "name": "webed",
   "version": "1.0.0",
   "description": "",
+  "engines": {"node": "13.14.0"},
   "main": "app.js",
  
   "scripts": {
