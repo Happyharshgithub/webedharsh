@@ -38,8 +38,16 @@
                     but it makes a great use of the standard Bootstrap core components. Feel free to use this template
                     for any project you want!</p>
                 <a class="btn btn-primary" href="#!">Call to Action!</a>
-                <a href="" class="mr-4 text-danger"><i id="<%= blog._id %>" onclick="deleteBtn(event)"
-                        class="far fa-trash-alt"></i></a>
+                <% if( userstatus1 == blog.author ){ %>
+                    <a href="" class="mr-4 text-danger">
+                        <i id="<%= blog._id %>" onclick="deleteBtn(event)" class="far fa-trash-alt"></i> </a>
+                        <a href="/edit/<%= blog._id%>" class="mr-0 text-warning">
+                            <i id="<%= blog._id %>" onclick="editBtn(event)" class="far fa-edit"></i></a>
+                   
+                     <%}
+                     else{ %>
+                
+                        <%}%>
 
             </div>
         </div>
@@ -57,7 +65,10 @@
               .then(data => window.location.href = '/')
               .catch(err => console.log(err));
             }
+            
           </script>
+          
+
         <hr>
 
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias

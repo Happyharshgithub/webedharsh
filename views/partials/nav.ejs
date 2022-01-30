@@ -8,13 +8,18 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item active"><a class="nav-link active" aria-current="page" href="/homepage">Home</a></li>
                 <li class="nav-item"><a class="nav-link active" href="/about1">About</a></li>
-                <li class="nav-item active" ><a class="nav-link active" href="/create/edit">Create/Edit</a></li>
+                <li class="nav-item active" >
+                    <% if(userstatus == null ){ %>
+                        <a class="nav-link active" href="/login/register">Create Blog</a>
+                    <% } else{ %>
+                    <a class="nav-link active" href="/create/edit">Create Blog</a></li>
+                    <% } %>
                 <li class="nav-item  active">&NonBreakingSpace; &nbsp; &nbsp; &nbsp; </li>
                 <li class="nav-item  active">
                     <% if(userstatus == null ){ %>
                         <a class="nav-link" href="/login/register">Login/Register</a>
                     <% } else{ %>
-                        <a class="nav-link active" href="/about1"><%=userstatus%></a> <li class="nav-item"> <a class="nav-link" href="/about1">Logout</a>
+                        <a class="nav-link active" href="#"><%=userstatus%></a> <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a>
                     <% } %>
 
                    </li>
@@ -22,7 +27,9 @@
                      <img src="/public/login.png" class="rounded-circle" alt="login" style="width: 30px;"></a></li>
                      
             </ul>
+           
         </div>
     </div>
+    
     
 </nav>

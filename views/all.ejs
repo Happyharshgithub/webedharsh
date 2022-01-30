@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>
-        <%=title %>
+        <%=sv1 %>
     </title>
 
 
@@ -63,17 +63,21 @@
                         </button>
                       </div>-->
 
+                      <form action="/allblogs" method="post"> 
+                        <div class="input-group rounded">
+                            <input type="search" name="searchvalue" value="<%=sv1%>" class="form-control rounded" placeholder="Search blogs" aria-label="Search"
+                                aria-describedby="search-addon" />
+                           <span class="input-group-text border-0" id="search-addon">
+                                <i class="fas fa-search">
+                                    <img src="/public/search_icon.png" style="width: 30px;height: auto; " onclick=submit()>
+                                </i>
+                            </span> 
+                        </div></form>
 
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Search blogs" aria-label="Search"
-                            aria-describedby="search-addon" />
 
-                        <span class="input-group-text border-0" id="search-addon">
-                            <i class="fas fa-search">
-                                <img src="/public/search_icon.png" style="width: 30px;height: auto;">
-                            </i>
-                        </span>
-                    </div>
+
+
+
 
                     This call to action card is a great place to showcase some important information or
                     display a clever tagline!</p>
@@ -100,7 +104,11 @@
                               }
                               %>
 
-
+                              <!--  if (blog.heading.match(/.*d.*/) )
+                                let r = new RegExp(".*{1," + n + "}", "g");-->
+                                <%let r= new RegExp(".*" + sv1 + ".*");%>
+<%console.log(r)%>
+                            <%if( blog.heading.match(r) || blog.body.match(r)  || blog.author.match(r)  ) {%>      
 
                             <div class="col-md-4 mb-5 shadow">
                                 <div class="card h-100 ">
@@ -139,6 +147,8 @@
                                 </div>
                             </div>
 
+                            <% } %>
+                            <!--end if-->
 
 
 

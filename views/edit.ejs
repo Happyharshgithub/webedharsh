@@ -32,18 +32,19 @@
 
       <div class="container">
         <div class="jumbotron">
-            <h2 class="text-center text-capitalize mb-5 ms-auto mx-auto">create content</h2>
-            <h5>author: <%=userstatus1%></h5>
+            <h2 class="text-center text-capitalize mb-5 ms-auto mx-auto">edit content</h2>
+            <h5>author: <%=userstatus1%> </h5>
+            
 
 
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <form action='/create/edit' method="post" >
+                    <form action='/edit' method="post" >
                       
                      
                       <div class="form-group">
                         <label for="exampleFormControlTextarea2">Heading</label>
-                        <textarea name="heading" placeholder="enter content "class="form-control" id="exampleFormControlTextarea2" rows="1"></textarea>
+                        <textarea name="heading" placeholder="" class="form-control" id="exampleFormControlTextarea2" rows="1"><%= blog.heading%></textarea>
                       </div>
 
                         <!--
@@ -69,13 +70,14 @@
 
                         <input name = "email" type="hidden" value="<%=userstatus2%>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <input name="author" type="hidden" value="<%=userstatus1%>" class="form-control" id="exampleInputPassword1">
+                        <input name="id_edit" type="hidden" value="<%=blog._id%>" class="form-control" id="exampleInputPassword2">
                        
                         
                         
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">Content</label>
-                            <textarea name="body" placeholder="enter content "class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea name="body"  placeholder="" class="form-control" id="exampleFormControlTextarea1" rows="3"><%= blog.body%></textarea>
                           </div>
                         
                           <!--<form>-->

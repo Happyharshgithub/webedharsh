@@ -134,13 +134,14 @@ sess.username="Ramesh";
 //console.log(req.session.username);
 //var passedVariable = req.query.valid;
 var passedVariable = req.session.valid;
+const sv = req.searchvalue;
 //console.log(passedVariable)
 
 
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('index', { title: 'Home', blogs: result, userstatus: passedVariable });
+        res.render('index', { title: 'Home', blogs: result, userstatus: passedVariable , sv1: sv });
     })
     .catch(err => console.log(err))
     //res.render('index' , { title : 'home', blogs : blogarray });
@@ -152,15 +153,48 @@ app.get('/homepage' , (req,res) =>{
   //  console.log(req.session.username);
     //res.render('index' , { title : 'home', blogs: result  });
     var passedVariable = req.session.valid;
+    const sv = req.searchvalue;
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('index', { title: 'Home', blogs: result,userstatus: passedVariable });
+        res.render('index', { title: 'Home', blogs: result,userstatus: passedVariable, sv1: sv });
 
     })
     .catch(err => console.log(err))
 
 })
+
+//search
+app.get('/searchresults..', (req,res) =>{
+    res.redirect('/register')
+})
+
+app.get('/search', (req,res) =>{
+    res.render('search')
+})
+app.get('/', (req,res) =>{
+    res.render('test')
+})
+
+
+//logout
+app.get('/logout' , (req,res) =>{
+
+    
+      
+      req.session.valid=null;
+      var passedVariable = req.session.valid;
+
+      Blog.find().sort({ createdAt: -1 })
+      .then(result => {
+  
+         // res.render('index', { title: 'Home', blogs: result,userstatus: passedVariable });
+             res.redirect('/');
+      })
+      .catch(err => console.log(err))
+  
+  })
+  
 
 //about blog
 app.get('/about1' , (req,res) =>{
@@ -181,6 +215,7 @@ app.get('/blogss' , (req,res) =>{
 app.get('/blogss/:id', (req, res) => {
 
     var passedVariable = req.session.valid;
+    var passedVariable1 = req.session.valid1;
     const id = req.params.id;
 
 
@@ -188,7 +223,7 @@ app.get('/blogss/:id', (req, res) => {
         .then(result => {
             console.log(result);
 
-            res.render('blogss', { title: 'Blog' ,blog:result, userstatus: passedVariable});
+            res.render('blogss', { title: 'Blog' ,blog:result, userstatus: passedVariable,  userstatus1: passedVariable1 });
 
         })
         .catch(err => console.log(err))
@@ -201,11 +236,20 @@ app.get('/blogss/:id', (req, res) => {
 app.delete('/blog/:id', (req, res) => {
     
     const id = req.params.id;
+    const passedVariable = req.session.valid;
+    const pn_blogr = req.session.valid1;
+    //const pn_blog=id2.substring(24);
+    //const id = id2.substring(0,24);
+
+   
+
 
     const myresponse = {
         status:'sucess'
     }
-
+        
+                      
+    
 
     Blog.findByIdAndDelete(id)
         .then(result => {
@@ -214,14 +258,19 @@ app.delete('/blog/:id', (req, res) => {
         })
         .catch(err => console.log(err))
 
+         
+    
 
 });
+
 
 
 //create blog
 app.get('/create/edit' , (req,res) =>{
     var passedVariable = req.session.valid;
-    res.render('create', {root: __dirname ,userstatus: passedVariable});
+    var passedVariable1 = req.session.valid1;
+    var passedVariable2 = req.session.valid2;
+    res.render('create', {root: __dirname ,userstatus: passedVariable,userstatus1: passedVariable1,userstatus2: passedVariable2});
 })
 
 //register
@@ -230,25 +279,120 @@ app.get('/register' , (req,res) =>{
     res.render('register', {root: __dirname, userstatus: passedVariable});
 })
 
+//edit
+//app.get('/edit' , (req,res) =>{
+   // var passedVariable = req.session.valid;
+    //var passedVariable1 = req.session.valid1;
+    //var passedVariable2 = req.session.valid2;
+    //var id = req.params.id;
+  //  Blog.findById(id)
+   // .then(result => {
+    //    console.log(result);
+
+     //   res.render('edit', {root: __dirname, userstatus: passedVariable, userstatus1: passedVariable1, userstatus2: passedVariable2});
+//
+   // })
+  //  .catch(err => console.log(err))
+
+    
+//})
+app.get('/edit/:id', (req, res) => {
+
+    var passedVariable = req.session.valid;
+    var passedVariable1 = req.session.valid1;
+    var passedVariable2 = req.session.valid2;
+    const id = req.params.id;
+
+
+    Blog.findById(id)
+        .then(result => {
+            console.log(result);
+            
+            res.render('edit', { title: 'Blog' ,blog:result, userstatus: passedVariable,  userstatus1: passedVariable1, userstatus2: passedVariable2});
+
+        })
+        .catch(err => console.log(err))
+
+
+});
+
+app.post('/edit', (req, res) => {
+
+    var passedVariable = req.session.valid;
+    var passedVariable1 = req.session.valid1;
+    var passedVariable2 = req.session.valid2;
+    //const id = req.params.id;
+    //var heading_edit=req.body.hea;
+var obj = req.body;
+
+    const id=req.id_edit;
+    console.log(obj);
+    console.log(obj.id_edit);
+
+        Blog.findByIdAndUpdate(obj.id_edit, { heading: obj.heading, body: obj.body },
+                function (err, docs) {
+        if (err){
+        console.log(err)
+        }
+        else{
+        console.log("Updated User : ", docs);
+        }
+        });
+
+
+        //  res.render('edit', { title: 'Blog' ,blog:result, userstatus: passedVariable,  userstatus1: passedVariable1, userstatus2: passedVariable2});
+          res.redirect('/');
+    
+
+
+});
+
+
 
 //allblogs
 app.get('/allblogs' , (req,res) =>{
     var passedVariable = req.session.valid;
+    var passedVariable1 = req.session.valid1;
     sess=req.session;
 sess.username;
 sess.username="Ramesh";
 console.log(req.session.username);
+var obj = req.body;
+const sv = "";
+console.log( req.body);
 
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
-
-        res.render('all', { title: 'Home', blogs: result, userstatus: passedVariable });
+        
+        res.render('all', { title: 'Home', blogs: result, userstatus: passedVariable, userstatus1: passedVariable1, sv1: sv });
 
     })
     .catch(err => console.log(err))
     
 })
 
+app.post('/allblogs' , (req,res) =>{
+    var passedVariable = req.session.valid;
+    var passedVariable1 = req.session.valid1;
+    var obj = req.body;
+const sv = obj.searchvalue;
+console.log( req.body);
+
+    sess=req.session;
+sess.username;
+sess.username="Ramesh";
+console.log(req.session.username);
+
+console.log( req.searchvalue);
+    Blog.find().sort({ createdAt: -1 })
+    .then(result => {
+
+        res.render('all', { title: 'Home', blogs: result, userstatus: passedVariable,  userstatus1: passedVariable1, sv1: sv });
+
+    })
+    .catch(err => console.log(err))
+    
+})
 
 app.post('/create/edit' , (req,res) =>{
   
@@ -402,6 +546,9 @@ app.post('/register',(req,res)=>{
                // res.redirect('/?valid=' + string);
                 req.session.valid = true;
                 req.session.valid=user.username;
+                req.session.valid1=user.penname;
+                req.session.valid2=user.email;
+
                res.redirect('/')   
 
             } else {
