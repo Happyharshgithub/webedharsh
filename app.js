@@ -141,7 +141,7 @@ const sv = req.searchvalue;
     Blog.find().sort({ createdAt: -1 })
     .then(result => {
 
-        res.render('index', { title: 'Home', blogs: result, userstatus: passedVariable , sv1: sv });
+        res.render('index', {root: __dirname, title: 'Home', blogs: result, userstatus: passedVariable , sv1: sv });
     })
     .catch(err => console.log(err))
     //res.render('index' , { title : 'home', blogs : blogarray });
