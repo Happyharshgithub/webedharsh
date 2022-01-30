@@ -30,14 +30,12 @@
                 <img src="/public/save the planet.jpg" class="card-img-top" alt=".f..">
 
             </div>
-            <div class="col-lg-5">
-                <h1 class="font-weight-light">Business Name or Tagline
+            <div class="col-lg-5" >
+                <h1 >
                     <%= blog.heading%>
                 </h1>
-                <p>This is a template that is great for small businesses. It doesn't have too much fancy flare to it,
-                    but it makes a great use of the standard Bootstrap core components. Feel free to use this template
-                    for any project you want!</p>
-                <a class="btn btn-primary" href="#!">Call to Action!</a>
+                <p>Posted by <%= blog.author%></p>
+               <!-- <a class="btn btn-primary" href="#!">Call to Action!</a>-->
                 <% if( userstatus1 == blog.author ){ %>
                     <a href="" class="mr-4 text-danger">
                         <i id="<%= blog._id %>" onclick="deleteBtn(event)" class="far fa-trash-alt"></i> </a>
@@ -70,32 +68,9 @@
           
 
         <hr>
+        <%= blog.body%>
 
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magni quas ex numquam, maxime minus quam molestias
-        corporis quod, ea minima accusamus.
-
+       
 
         <!-- Content Row-->
 
@@ -103,10 +78,17 @@
 
             <div class="row gx-4 gx-lg-5 align-items-center my-5 ">
                 <div class="col-lg-9">
+                    <h3>Comments section..</h3>
+                    <hr>
+                    <div class="col-lg-9">
+                        <input name="comment" placeholder="Post your comments here...." ><!--value="<%=userstatus1%>" class="form-control" id="exampleInputPassword1"-->
+                    </div>
+                    
                     <div class="card h-100 ">
                         <span class="border border-primary m-1">
                             <!--  <img class="img-fluid rounded mb-4 mb-lg-0 max-width: 100%" src="assets/save the planet.jpg" alt="..." />-->
                         </span>
+                        
                         <div class="card-body">
                             <h2 class="card-title">Card One</h2>
                             <h6 class="card-title">Card One</h6><br>
@@ -121,9 +103,9 @@
 
                             <table>
                                 <tr>
-                                    <th> <a class="btn btn-primary btn-sm" href="#!">More Info</a></th>
+                                    <th> <a type="hidden" class="btn btn-primary btn-sm" href="#!">more info</a></th>
                                     <th>&nbsp;</th>
-                                    <th> <small class="text-muted">Last updated 3 mins ago</small></th>
+                                    <th> <small class="text-muted">Last updated on 3 mins ago</small></th>
                                 </tr>
                             </table>
 

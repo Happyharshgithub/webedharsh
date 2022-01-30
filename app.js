@@ -279,6 +279,11 @@ app.get('/register' , (req,res) =>{
     res.render('register', {root: __dirname, userstatus: passedVariable});
 })
 
+//portfolio
+app.get('/portfolio' , (req,res) =>{
+    var passedVariable = req.session.valid;
+    res.render('portfolio', {root: __dirname, userstatus: passedVariable});
+})
 //edit
 //app.get('/edit' , (req,res) =>{
    // var passedVariable = req.session.valid;

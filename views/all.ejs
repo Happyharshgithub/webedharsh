@@ -110,7 +110,7 @@
 <%console.log(r)%>
                             <%if( blog.heading.match(r) || blog.body.match(r)  || blog.author.match(r)  ) {%>      
 
-                            <div class="col-md-4 mb-5 shadow">
+                            <div class="col-md-4 mb-5 ">
                                 <div class="card h-100 ">
                                     <span class="border border-primary m-1">
                                         <img src="/public/save the planet.jpg" class="card-img-top" alt=".f.."></span>
@@ -139,7 +139,7 @@
                                                 <th> <a class="btn btn-primary btn-sm"
                                                         href="/blogss/<%= blog._id%>">More Info</a></th>
                                                 <th>&nbsp;</th>
-                                                <th> <small class="text-muted">Last updated 3 mins ago</small></th>
+                                                <th> <small class="text-muted">Last updated <%= blog.updatedAt%></small></th>
                                             </tr>
                                         </table>
 
