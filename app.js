@@ -172,7 +172,7 @@ app.get('/searchresults..', (req,res) =>{
 app.get('/search', (req,res) =>{
     res.render('search')
 })
-app.get('/', (req,res) =>{
+app.get('/test', (req,res) =>{
     res.render('test')
 })
 
